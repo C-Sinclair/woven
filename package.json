@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build",
+    "test": "estest",
+    "format": "prettier --write \"src/**/*.js\"",
+    "lint": "prettier --check \"src/**/*.js\""
+  },
+  "dependencies": {
+    "haunted": "^4.7.0",
+    "lit-html": "^1.2.1"
+  },
+  "devDependencies": {
+    "estest": "^10.3.0",
+    "prettier": "^2.0.5",
+    "snowpack": "^2.7.5",
+    "typescript": "^3.9.7"
+  }
+}
