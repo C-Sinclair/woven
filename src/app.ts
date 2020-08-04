@@ -1,17 +1,16 @@
 import { html } from 'lit-html'
 import { useState } from 'haunted'
-import { greet } from '../build/pkg/woven'
+import { add } from '../pkg/woven'
 
 export const App = () => {
     const [count, setCount] = useState(0)
-
 
     return html`
         <div>
             <h1>${count}</h1>
             <button @click=${() => {
-                greet()
-                setCount(count + 1)
+                const res = add(1,2)
+                setCount(count + res)
             }}>
                 Increase Count
             </button>
