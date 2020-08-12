@@ -1,19 +1,28 @@
 import { html } from 'lit-html'
-import { useState } from 'haunted'
-import { add } from '../pkg/woven'
+import { useState, useEffect } from 'haunted'
+import init, { Universe } from '../pkg/woven'
 
 export const App = () => {
-    const [count, setCount] = useState(0)
+    const [gameState, setGameState] = useState('')
+    
+    useEffect(() => {
+        const run = async () => {
+            await init()
+            const universe = Universe.new()
+            const render = () => {
+                const text = universe.render()
+                setGameState(text)
+                universe.tick()
+                requestAnimationFrame(render)
+            }
+        }
+        run()
+    }, [])
 
     return html`
         <div>
-            <h1>${count}</h1>
-            <button @click=${() => {
-                const res = add(1,2)
-                setCount(count + res)
-            }}>
-                Increase Count
-            </button>
+            <h1>Sinclair's Game of Life</h1>
+            ${gameState}
         </div>
     `
 }
